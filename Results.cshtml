@@ -1,0 +1,2 @@
+@model List<ApiEnrollment>
+<h1>My race results</h1>@foreach(var e in Model){<article><h3>@(e.Category?.CategoryName ?? "Race category")</h3><p>Position: @(e.Result?.Position?.ToString() ?? "Pending") · Finish time: @(e.Result?.FinishTime?.ToString() ?? "Pending")</p></article>}@if(!Model.Any()){<p>Your completed race results will appear here after the organiser publishes them.</p>}

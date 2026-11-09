@@ -1,0 +1,2 @@
+@model CategoryVM
+<h1>Add category</h1>@if(ViewBag.Error!=null){<p class="error">@ViewBag.Error</p>}<form method="post"><input asp-for="EventID" type="hidden"/><label>Category name</label><input asp-for="CategoryName" required/><label>Distance (km)</label><input asp-for="DistanceKm" type="number" step="0.01" required/><label>Entry fee (R)</label><input asp-for="EntryFee" type="number" step="0.01" required/><label>Maximum participants</label><input asp-for="MaxParticipants" type="number" required/><button>Save category</button></form>

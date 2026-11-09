@@ -1,0 +1,9 @@
+<h1>Login</h1>
+@if(ViewBag.Error!=null){<p class="error">@ViewBag.Error</p>}
+<form method="post">
+    @Html.AntiForgeryToken()
+    <label>Email</label><input name="Email" type="email" required/>
+    <label>Password</label><input name="Password" type="password" required/>
+    <button type="submit">Login</button>
+</form>
+<p>New to RaceDay? <a asp-action="Register">Create an account</a></p>

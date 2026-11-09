@@ -1,0 +1,2 @@
+@model List<ApiEnrollment>
+<h1>My enrolled events</h1>@foreach(var e in Model){<article><h3>@(e.Category?.CategoryName ?? "Race category")</h3><p>Enrolled: @e.EnrollmentDate.ToString("dd MMM yyyy") · Race number: @e.RaceNumber · Status: @e.Status</p></article>}

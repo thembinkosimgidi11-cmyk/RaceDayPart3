@@ -1,0 +1,2 @@
+@model List<ApiCategory>
+<h1>Event categories</h1><p><a class="button" asp-action="CreateCategory" asp-route-eventId="@ViewBag.EventID">Add category</a></p>@foreach(var c in Model){<article><b>@c.CategoryName</b><p>@c.DistanceKm km · R @c.EntryFee · Maximum @c.MaxParticipants participants</p></article>}

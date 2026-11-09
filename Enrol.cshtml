@@ -1,0 +1,2 @@
+@model EnrolVM
+<h1>Confirm enrolment</h1>@if(ViewBag.Error!=null){<p class="error">@ViewBag.Error</p>}<form method="post"><input asp-for="CategoryID" type="hidden"/><p>Confirm that you want to enrol in this category.</p><button>Confirm enrolment</button></form>

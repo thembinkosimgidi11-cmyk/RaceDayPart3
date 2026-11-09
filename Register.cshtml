@@ -1,0 +1,49 @@
+@model RegisterVM
+<h1>Create account</h1>
+@if(ViewBag.Error!=null){<p class="error">@ViewBag.Error</p>}
+<form method="post">
+    @Html.AntiForgeryToken()
+    <label>First name</label><input name="FirstName" value="@Model?.FirstName" required/>
+    <label>Last name</label><input name="LastName" value="@Model?.LastName" required/>
+    <label>Email</label><input name="Email" type="email" value="@Model?.Email" required/>
+    <label>Password (minimum 8 characters)</label><input name="Password" type="password" minlength="8" required/>
+    <label>Account type</label>
+    <select id="Role" name="Role" onchange="toggleRegistrationFields()">
+        <option value="Participant" selected="@(Model?.Role != "Organiser")">Participant</option>
+        <option value="Organiser" selected="@(Model?.Role == "Organiser")">Organiser</option>
+    </select>
+
+    <div id="commonFields">
+        <label>Phone number</label><input name="Phone" value="@Model?.Phone" required/>
+    </div>
+    <div id="organiserFields">
+        <label>Organisation</label><input name="Organisation" value="@Model?.Organisation"/>
+    </div>
+    <div id="participantFields">
+        <label>Date of birth</label><input name="DateOfBirth" type="date" value="@(Model?.DateOfBirth?.ToString("yyyy-MM-dd"))"/>
+        <label>Gender</label>
+        <select name="Gender">
+            <option value="">Select gender</option>
+            <option value="Male" selected="@(Model?.Gender == "Male")">Male</option>
+            <option value="Female" selected="@(Model?.Gender == "Female")">Female</option>
+            <option value="Other" selected="@(Model?.Gender == "Other")">Other</option>
+        </select>
+        <label>Emergency contact name</label><input name="EmergencyContact" value="@Model?.EmergencyContact"/>
+        <label>Emergency contact phone</label><input name="EmergencyPhone" value="@Model?.EmergencyPhone"/>
+    </div>
+    <button type="submit">Register</button>
+</form>
+<p>Already registered? <a asp-action="Login">Login</a></p>
+
+<script>
+function toggleRegistrationFields() {
+    const role = document.getElementById('Role').value;
+    const organiser = role === 'Organiser';
+    document.getElementById('organiserFields').hidden = !organiser;
+    document.getElementById('participantFields').hidden = organiser;
+    const participantFields = document.querySelectorAll('#participantFields input, #participantFields select');
+    participantFields.forEach(field => field.required = !organiser);
+    document.querySelector('#organiserFields input').required = organiser;
+}
+toggleRegistrationFields();
+</script>

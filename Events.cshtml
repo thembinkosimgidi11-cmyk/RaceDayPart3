@@ -1,0 +1,2 @@
+@model List<ApiEvent>
+<h1>Upcoming events</h1>@foreach(var e in Model){<article><h2>@e.EventName</h2><p>@e.Description</p><p>@e.EventDate.ToString("dd MMM yyyy") · @e.Location</p>@foreach(var c in e.Categories){<p>@c.CategoryName (@c.DistanceKm km) — R @c.EntryFee <a asp-action="Enrol" asp-route-categoryId="@c.CategoryID">Enrol</a></p>}</article>}
